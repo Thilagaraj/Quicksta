@@ -46,7 +46,8 @@ app.get('/media/:mediaId', function(request, response) {
 		var commentsList=_.map(results.comments,function(list){
 			return {"text":list._params,"userInfo":list.account._params};
 		});
-		response.send({"postInfo":results._params,"location":results.location._params,"userInfo":results.account._params,"comments":commentsList});
+		var locationDetails=(results.location ? results.location._params : {});
+		response.send({"postInfo":results._params,"location":locationDetails,"userInfo":results.account._params,"comments":commentsList});
 	})
 });
 app.listen(app.get('port'), function() {
