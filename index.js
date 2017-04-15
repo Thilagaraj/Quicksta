@@ -50,6 +50,17 @@ app.get('/media/:mediaId', function(request, response) {
 		response.send({"postInfo":results._params,"location":locationDetails,"userInfo":results.account._params,"comments":commentsList});
 	})
 });
+app.get('/media/comments/:mediaId', function(request, response) {
+		
+	var session = new Client.Session(device, storage);		
+	var feed = new Client.Feed.MediaComments(session, request.params.mediaId);
+	feed.get().then(function(results) {
+		var commentsList=_.map(results,function(list){
+			return {"text":list._params,"userInfo":list.account._params};
+		});
+		response.send(commentsList);
+	})
+});
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
