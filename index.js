@@ -114,7 +114,7 @@ app.get('/location/media/:id/:cursor', function(request, response) {
 	if(request.params.cursor!==null){
 		feed.setCursor(request.params.cursor);
 	}
-	feed.get().then(function(results) {		
+	feed.get().then(function(results) {		console.log(results);
 		var searchList=_.map(results,function(list){
 			return {"post":list._params,"userInfo":list.account._params};
 		});
