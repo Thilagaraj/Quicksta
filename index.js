@@ -103,11 +103,7 @@ app.get('/hashtag/media/:tag/:cursor', function(request, response) {
 		var configParams={};
 		configParams.hasMore=feed.isMoreAvailable();
 		configParams.cursor=feed.getCursor();
-		new Client.Account.getById(session, request.params.userid)
-		  .then(function(account) {
-			var accountParams=account._params;
-			response.send({"postList":searchList,"config":configParams});
-		  })
+		response.send({"postList":searchList,"config":configParams});
 		
 	})
 });
