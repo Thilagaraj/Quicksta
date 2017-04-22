@@ -88,6 +88,29 @@ app.get('/search/location/:q', function(request, response) {
 		response.send(searchList);
 	}); 
 });
+app.get('/hashtag/media/:tag/:cursor', function(request, response) {
+		
+	var session = new Client.Session(device, storage);		
+	var feed = new Client.Feed.TaggedMedia(session, request.params.tag);
+	if(request.params.cursor!==null){
+		feed.setCursor(request.params.cursor);
+	}
+	feed.get().then(function(results) {		
+		var searchList=_.map(results,function(list){
+			return list._params;
+		});
+			response.send(searchList);
+		/*var configParams={};
+		configParams.hasMore=feed.isMoreAvailable();
+		configParams.cursor=feed.getCursor();
+		new Client.Account.getById(session, request.params.userid)
+		  .then(function(account) {
+			var accountParams=account._params;
+			response.send({"postList":searchList,"userInfo":accountParams,"config":configParams});
+		  })*/
+		
+	})
+});
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
