@@ -116,7 +116,7 @@ app.get('/location/media/:id/:cursor', function(request, response) {
 	}
 	feed.get().then(function(results) {		console.log(results);
 		var searchList=_.map(results,function(list){
-			return {"post":list._params,"userInfo":list.account._params};
+			return {"post":list._params,"userInfo":list.account._params,"location":list.location._params};
 		});
 		console.log(results);
 		var configParams={};
