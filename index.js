@@ -99,7 +99,7 @@ app.get('/hashtag/media/:tag/:cursor', function(request, response) {
 		var searchList=_.map(results,function(list){
 			return {"post":list._params,"userInfo":list.account._params};
 		});
-		
+		console.log(results);
 		var configParams={};
 		configParams.hasMore=feed.isMoreAvailable();
 		configParams.cursor=feed.getCursor();
