@@ -78,6 +78,17 @@ app.get('/search/hastag/:q', function(request, response) {
 		response.send(searchList);
 	}); 
 });
+app.get('/search/location/:q', function(request, response) {
+		
+	var session = new Client.Session(device, storage);		
+	var feed = new Client.Location.search(session, request.params.q);
+	feed.then(function(results) {			
+		var searchList=_.map(results,function(list){
+			return list._params;
+		});
+		response.send(searchList);
+	}); 
+});
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
