@@ -5,7 +5,6 @@ var device = new Client.Device('tk.thilagaraj');
 var storage = new Client.CookieFileStorage(__dirname + '/cookies/tk.thilagaraj.json');
 
 var _ = require('underscore');
-var Promise = require('bluebird');
 app.set('port', (process.env.PORT || 5000));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
