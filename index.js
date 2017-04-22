@@ -97,17 +97,17 @@ app.get('/hashtag/media/:tag/:cursor', function(request, response) {
 	}
 	feed.get().then(function(results) {		
 		var searchList=_.map(results,function(list){
-			return list._params;
+			return {"post":list._params,"userInfo":list.account._params};
 		});
-			response.send(searchList);
-		/*var configParams={};
+			console.log(results);
+		var configParams={};
 		configParams.hasMore=feed.isMoreAvailable();
 		configParams.cursor=feed.getCursor();
 		new Client.Account.getById(session, request.params.userid)
 		  .then(function(account) {
 			var accountParams=account._params;
-			response.send({"postList":searchList,"userInfo":accountParams,"config":configParams});
-		  })*/
+			response.send({"postList":searchList,"config":configParams});
+		  })
 		
 	})
 });
