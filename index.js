@@ -16,7 +16,7 @@ app.get('/search/user/:q', function(request, response) {
 	var feed = new Client.Account.search(session, request.params.q);	
 	feed.then(function(results) {			
 		var searchList=_.map(results,function(list){
-			return list.account._params;
+			return list._params;
 		});
 		response.send(searchList);
 	})
