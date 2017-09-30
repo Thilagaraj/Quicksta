@@ -11,7 +11,8 @@
   },
   "dependencies": {    
     "express": "4.15.2",
-	"instagram-private-api":"*"
+	"instagram-private-api":"*",
+	"underscore":"^1.8.3"
   },  
   "repository": {
     "type": "git",
